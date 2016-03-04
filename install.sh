@@ -113,6 +113,7 @@ echo "Installing optional Torch packages"
 cd ${THIS_DIR}/pkg/gnuplot          && $PREFIX/bin/luarocks make rocks/gnuplot-scm-1.rockspec
 cd ${THIS_DIR}/exe/env              && $PREFIX/bin/luarocks make
 cd ${THIS_DIR}/extra/nnx            && $PREFIX/bin/luarocks make nnx-0.1-1.rockspec
+cd ${THIS_DIR}/extra/struct         && $PREFIX/bin/luarocks make struct-1.4-1.rockspec
 # cd ${THIS_DIR}/extra/threads        && $PREFIX/bin/luarocks make rocks/threads-scm-1.rockspec
 
 # Optional CUDA packages
