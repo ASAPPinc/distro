@@ -3,12 +3,12 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TORCH_INSTALL=$(dirname $SCRIPT_DIR)
 
 # check if we've relocated
-LAST_LOCATION=$(cat ${TORCH_INSTALL}/share/cmake/torch/TorchConfig.cmake | grep '^SET(Torch_INSTALL_PREFIX' | cut -d \  -f 2 | cut -d \) -f 1)
+LAST_LOCATION=$(cat ${TORCH_INSTALL}/share/cmake/torch/TorchConfig.cmake | grep '^SET(Torch_INSTALL_PREFIX' | cut -d \" -f 2)
 if [[ ${LAST_LOCATION} != ${TORCH_INSTALL} ]]; then {
-  echo Rewriting config, following relation
+  echo Rewriting config, following relocation
   echo old: ${LAST_LOCATION}
   echo new: ${TORCH_INSTALL}
-  sed -i -e "s%^SET(Torch_INSTALL_PREFIX.*%SET(Torch_INSTALL_PREFIX ${TORCH_INSTALL})%" ${TORCH_INSTALL}/share/cmake/torch/TorchConfig.cmake
+  sed -i -e "s%^SET(Torch_INSTALL_PREFIX.*%SET(Torch_INSTALL_PREFIX \"${TORCH_INSTALL})\"%" ${TORCH_INSTALL}/share/cmake/torch/TorchConfig.cmake
 } fi
 
 export PATH=$PATH:${TORCH_INSTALL}/bin
